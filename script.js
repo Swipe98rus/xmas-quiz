@@ -223,12 +223,12 @@ const qa = [
 let progressCount = 0;
 let qaIndex = 0;
 
+const winner = document.querySelector('#winner');
 const linkButton = document.querySelector('#link-button');
-let linkToGift = 'moiskillnadne.com/';
+let linkToGift = 'https://swipe98rus.github.io/xmas-quiz/';
 
 //For test link button
 linkButton.innerHTML = linkToGift;
-linkButton.href = linkToGift;
 //--------------------
 
 
@@ -267,23 +267,59 @@ function clearQuiz(){
 }
 
 function onChange(qa, ans){
-  const text = qa.linkPart.trim();
+  const text = qa.linkPart;
   const bool = qa.bool;
 
-  if(bool) {
-    ans.style.color = '#64dd17';
-    progressCount += 10; 
-    progress.style.width = `${progressCount}%`;
-    linkToGift = `${linkToGift}${text}/`;
-    linkButton.innerHTML = linkToGift;
-    linkButton.href = linkToGift;
-    qaIndex += 1;
-    setTimeout( () => {
-      updQuiz();
-    }, 1000)
+  if (bool) {
+    if(qaIndex < 9 ) {
+      ans.style.color = '#64dd17';
+      progressCount += 10; 
+      progress.style.width = `${progressCount}%`;
+      linkToGift = `${linkToGift}${text}/`;
+      linkButton.innerHTML = linkToGift;
+      // linkButton.href = linkToGift;
+      qaIndex += 1;
+      setTimeout( () => {
+        updQuiz();
+      }, 1000)
+    } else {
+      ans.style.color = '#64dd17';
+      progressCount += 10; 
+      progress.style.width = `${progressCount}%`;
+      linkToGift = `${linkToGift}${text}/`;
+      linkButton.innerHTML = linkToGift;
+      // linkButton.href = linkToGift;
+      winner.style.display = 'block';
+      winnerAnim();
+    }
   } else {
     ans.style.color = '#ff3d00';
   }
 }
 
-fillQuiz(qa[qaIndex])
+fillQuiz(qa[qaIndex]);
+
+function winnerAnim(){
+let start =  Date.now();
+
+let timer = setInterval(function() {
+  // сколько времени прошло с начала анимации?
+  let timePassed = Date.now() - start;
+
+  if (timePassed >= 1500) {
+    clearInterval(timer); // закончить анимацию через 2 секунды
+    return;
+  }
+
+  // отрисовать анимацию на момент timePassed, прошедший с начала анимации
+  draw(timePassed);
+
+}, 20);
+
+// в то время как timePassed идёт от 0 до 2000
+// left изменяет значение от 0px до 400px
+function draw(timePassed) {
+  winner.style.opacity = `${timePassed / 1500}`; 
+}
+};
+

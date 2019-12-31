@@ -1,4 +1,43 @@
-.grid-center {
-	display: grid;
-	justify-content: center;
+#particles-js {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+			to bottom,
+			rgba(117, 114, 113, 0.8) 10%,
+			rgba(40, 49, 77, 0.8) 30%,
+			rgba(29, 35, 71, 0.8) 50%,
+			rgba(19, 25, 28, 0.8) 80%,
+			rgba(15, 14, 14, 0.8) 100%
+		),
+		url(https://38media.tumblr.com/tumblr_m00c3czJkM1qbukryo1_500.gif);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+	z-index: -1;
+}
+
+#winner {
+	display: none;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.sweet-icon {
+	position: absolute;
+	top: 30vh;
+	left: 30%;
+}
+
+.folder-icon {
+	position: absolute;
+	top: 30vh;
+	left: 50%;
 }
